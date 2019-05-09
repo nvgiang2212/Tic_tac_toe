@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tic Tac Toe</title>
+	<style>
+		body { text-align: center; }
+	</style>
+</head>
+<body>
+	<h1>Game Tic Tac Toe</h1><hr>
+	<p id="tictactoe"></p>
+	<input type="button" id="user1" value="User-1" onclick="ChangeUser1()">
+	<input type="button" id="user2" value="User-2" onclick="ChangeUser2()">
+
+	<script>
+		let board = [];
+		let data = "";
+
+		for (let i=0; i<9; i++) {
+			board[i] = [".", ".", ".",".", ".", ".",".", ".", "."];
+		}
+
+		for (let i=0; i<9; i++) {
+			data += "<br>";
+			for (let j=0; j<9; j++) {
+				data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			}
+		}
+		document.getElementById('tictactoe').innerHTML = data;
+
+		function ChangeUser1() {
+			let PositionX = prompt("Pos X:");
+			let PositionY = prompt("Pos Y:");
+			data = "";
+			board[PositionX][PositionY] = "x";
+			
+			for (let i = 0; i<9; i++) {
+				data += "<br>";
+				for (let j=0; j<9; j++) {
+					data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+			}
+
+			document.getElementById('tictactoe').innerHTML = data;
+			checkWin();
+		}
+
+		function ChangeUser2() {
+			let PositionX = prompt("Pos X:");
+			let PositionY = prompt("Pos Y:");
+			data = "";
+			board[PositionX][PositionY] = "o";
+
+			for (let i = 0; i<9; i++) {
+				data += "<br>";
+				for (let j=0; j<9; j++) {
+					data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+			}
+			document.getElementById('tictactoe').innerHTML = data;
+			checkWin();
+		}
+
+		function checkWin() {
+			for (let i=0; i<9; i++) {
+				for (let j=0; j<9; j++) {
+
+					if ((board[i][j] == board[i+1][j]) && (board[i+1][j] == board[i+2][j]) && board[i][j] == "x") {
+						alert("User 1 win");
+					} else if ((board[i][j] == board[i+1][j+1]) && (board[i+1][j+1] == board[i+2][j+2]) && board[i][j] == "x") {
+						alert("User 1 win");
+					} else if ((board[i][j] == board[i][j+1]) && (board[i][j+1] == board[i][j+2]) && board[i][j] == "x") {
+						alert("User 1 win");
+					};
+
+					if ((board[i][j] == board[i+1][j]) && (board[i+1][j] == board[i+2][j]) && board[i][j] == "o") {
+						alert("User 2 win");
+					} else if ((board[i][j] == board[i+1][j+1]) && (board[i+1][j+1] == board[i+2][j+2]) && board[i][j] == "o") {
+						alert("User 2 win");
+					} else if ((board[i][j] == board[i][j+1]) && (board[i][j+1] == board[i][j+2]) && board[i][j] == "o") {
+						alert("User 2 win");
+					};
+				}
+			}
+		}
+	</script>
+</body>
+</html>
